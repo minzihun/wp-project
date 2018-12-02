@@ -34,6 +34,13 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// pug의 local에 현재 사용자 정보와 flash 메시지를 전달하자.
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.session.user;
+  res.locals.flashMessages = req.flash();
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
