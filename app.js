@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+var mongoose = require('mongoose');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -13,6 +15,12 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// mongodb connect
+mongoose.Promise = global.Promise; // ES6 Native Promise를 mongoose에서 사용한다.
+const connStr = 'mongodb://<dbuser>:<dbpassword>@ds123584.mlab.com:23584/cute_jihun';
+mongoose.connect(connStr, {useMongoClient: true });
+mongoose.connection.on('error', console.error);
 
 app.use(logger('dev'));
 app.use(express.json());
