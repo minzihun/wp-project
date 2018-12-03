@@ -47,11 +47,15 @@ app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
+  indentedSyntax: false, // true = .sass and false = .scss
   debug: true,
   sourceMap: true
 }));
+
+// public 디렉토리에 있는 내용은 static하게 service하도록.
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(flash()); // flash message를 사용할 수 있도록
 
 // pug의 local에 현재 사용자 정보와 flash 메시지를 전달하자.
 app.use(function(req, res, next) {
