@@ -1,9 +1,12 @@
 var createError = require('http-errors');
 var favicon = require('serve-favicon');
 var express = require('express');
+var bodyParser = require('body-parser');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+var flash = require('connect-flash');
 var sassMiddleware = require('node-sass-middleware');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
@@ -34,8 +37,8 @@ app.locals.querystring = require('querystring');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // _method를 통해서 method를 변경할 수 있도록 함. PUT이나 DELETE를 사용할 수 있도록.
@@ -56,6 +59,16 @@ app.use(function(req, res, next) {
   res.locals.flashMessages = req.flash();
   next();
 });
+
+// session을 사용할 수 있도록.
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'long-long-long-secret-string-1313513tefgwdsvbjkvasd'
+}));
+
+// public 디렉토리에 있는 내용은 static하게 service하도록.
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Route
 app.use('/', index);
