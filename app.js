@@ -5,6 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
+var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 
 var index = require('./routes/index');
@@ -36,10 +37,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// _method를 통해서 method를 변경할 수 있도록 함. PUT이나 DELETE를 사용할 수 있도록.
+app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
+
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   indentedSyntax: true, // true = .sass and false = .scss
+  debug: true,
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
