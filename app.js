@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var questions = require('./routes/questions');
 
 
 var app = express();
@@ -16,6 +17,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+if (app.get('env') === 'development') {
+  app.locals.pretty = true;
+}
 
 // mongodb connect
 mongoose.Promise = global.Promise; // ES6 Native Promise를 mongoose에서 사용한다.
