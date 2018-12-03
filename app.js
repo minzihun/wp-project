@@ -7,8 +7,9 @@ var sassMiddleware = require('node-sass-middleware');
 
 var mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var index = require('./routes/index');
+var users = require('./routes/users');
+
 
 var app = express();
 
@@ -36,13 +37,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // pug의 local에 현재 사용자 정보와 flash 메시지를 전달하자.
 app.use(function(req, res, next) {
-  res.locals.currentUser = req.session.user;
+  res.locals.currentUser = req.session.usersRouter;
   res.locals.flashMessages = req.flash();
   next();
 });
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
