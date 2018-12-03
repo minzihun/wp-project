@@ -27,6 +27,10 @@ const connStr = 'mongodb://<dbuser>:<dbpassword>@ds123584.mlab.com:23584/cute_ji
 mongoose.connect(connStr, {useMongoClient: true });
 mongoose.connection.on('error', console.error);
 
+// Pug의 local에 moment라이브러리와 querystring 라이브러리를 사용할 수 있도록.
+app.locals.moment = require('moment');
+app.locals.querystring = require('querystring');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
