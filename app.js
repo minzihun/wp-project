@@ -1,10 +1,10 @@
 var createError = require('http-errors');
+var favicon = require('serve-favicon');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
-
 var mongoose = require('mongoose');
 
 var index = require('./routes/index');
@@ -31,6 +31,7 @@ mongoose.connection.on('error', console.error);
 app.locals.moment = require('moment');
 app.locals.querystring = require('querystring');
 
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
