@@ -1,5 +1,6 @@
 const express = require('express');
 const Question = require('../models/question');
+const User = require('../models/user'); 
 const Answer = require('../models/answer'); 
 const catchErrors = require('../lib/async-error');
 
