@@ -85,11 +85,11 @@ a:hover {
 
 .question {
   line-height: 160%;
-  margin-bottom: 1em; }
+  margin-bottom: 2em; }
   .question .title {
     font-size: 1.3rem; }
   .question .content {
-    color: #aaa; }
+    color: #666; }
   .question .tags {
     margin: 0.5em 0; }
 
@@ -131,6 +131,21 @@ a:hover {
     padding-left: 4em; }
   .show .answer .content {
     margin-bottom: 0.5em;
-    color: #bbb; }
+    color: #888; }
+
+.question-like-btn, .answer-like-btn {
+  cursor: pointer; }
+  .question-like-btn .for-loading, .answer-like-btn .for-loading {
+    display: none; }
+  .question-like-btn.loading, .answer-like-btn.loading {
+    filter: opacity(30%);
+    cursor: wait; }
+    .question-like-btn.loading > span, .answer-like-btn.loading > span {
+      display: none; }
+    .question-like-btn.loading .for-loading, .answer-like-btn.loading .for-loading {
+      display: inline-block; }
+  .question-like-btn.disabled, .answer-like-btn.disabled {
+    color: #bbb;
+    cursor: default; }
 
 /*# sourceMappingURL=style.css.map */
