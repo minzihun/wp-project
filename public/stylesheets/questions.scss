@@ -7,19 +7,18 @@
 }
 .question {
   line-height: 160%;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   .title {
     font-size: 1.3rem;
   }
   .content {
-    color: #aaa;
+    color: #666;
   }
   .tags {
     margin: 0.5em 0;
   }
-
-
 }
+
 .author {
   text-align: right;
   font-size: 0.8em;
@@ -65,7 +64,24 @@
     margin-bottom: 1em;
     .content {
       margin-bottom: 0.5em;
-      color: #bbb;
+      color: #888;
     }
+  }
+}
+
+.question-like-btn, .answer-like-btn {
+  .for-loading {display: none;}
+  cursor: pointer; 
+
+  &.loading {
+    & > span {display: none;}
+    .for-loading {display: inline-block;}
+    filter: opacity(30%);
+    cursor: wait;
+  }
+
+  &.disabled {
+    color: #bbb;
+    cursor: default;
   }
 }
