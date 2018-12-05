@@ -1,6 +1,6 @@
-var mongoose = require('mongoose'),
-  mongoosePaginate = require('mongoose-paginate'),
-  Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
+const Schema = mongoose.Schema;
 
 var schema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User' },
