@@ -1,9 +1,17 @@
-extends ../layout
-
-block content
-  .container
-    h1.main-title Edit Question
-    form(action=`/questions/${question.id}`, method="POST")
-      input(type="hidden", name="_method", value="PUT")
-      include _form
-      button.btn.btn-outline-primary(type="submit") Update Your Question
+.content= question.content
+.tags.badges
+  each tag in question.tags
+    span.badge.badge-phill.badge-secondary= tag
+    | 
+.row
+  .col-sm
+    .numbers.
+      #[span.number.num-likes= question.numLikes] likes,
+      #[span.number.num-answers= question.numAnswers] answers,
+      #[span.number.num-reads= question.numReads] reads
+  .col-sm
+    .author
+      | asked on #{moment(question.createdAt).format('YYYY-MM-DD')}
+      if question.author
+        | 
+        | by #[a(href=`/users/${question.author.id}`)= question.author.name] 
