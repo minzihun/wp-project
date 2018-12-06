@@ -5,6 +5,9 @@
   "scripts": {
     "start": "nodemon ./bin/www"
   },
+  "engines": {
+    "node": "8.2.1"
+  },
   "dependencies": {
     "acorn": "^6.0.4",
     "bcrypt": "^3.0.2",
