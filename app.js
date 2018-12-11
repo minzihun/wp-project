@@ -26,12 +26,11 @@ module.exports = (app, io) => {
     app.locals.pretty = true;
   }
 
-  // Pug의 local에 moment라이브러리와 querystring 라이브러리를 사용할 수 있도록.
   app.locals.moment = require('moment');
   app.locals.querystring = require('querystring');
 
   // mongodb connect
-  mongoose.Promise = global.Promise; // ES6 Native Promise를 mongoose에서 사용한다.
+  mongoose.Promise = global.Promise;
   const connStr = 'mongodb://root:qet135..@ds123584.mlab.com:23584/cute_jihun';
   mongoose.connect(connStr, {useMongoClient: true });
   mongoose.connection.on('error', console.error);
@@ -42,7 +41,6 @@ module.exports = (app, io) => {
 
   app.use(cookieParser());
 
-  // _method를 통해서 method를 변경할 수 있도록 함. PUT이나 DELETE를 사용할 수 있도록.
   app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 
   app.use(sassMiddleware({
@@ -56,7 +54,7 @@ module.exports = (app, io) => {
   const sessionStore = new session.MemoryStore();
   const sessionId = 'mjoverflow.sid';
   const sessionSecret =  'TODO: change this secret string for your own';
-  // session을 사용할 수 있도록.
+
   app.use(session({
     name: sessionId,
     resave: true,
@@ -65,26 +63,20 @@ module.exports = (app, io) => {
     secret: sessionSecret
   }));
 
-  app.use(flash()); // flash message를 사용할 수 있도록
+  app.use(flash());
 
-  // public 디렉토리에 있는 내용은 static하게 service하도록.
   app.use(express.static(path.join(__dirname, 'public')));
 
-  //=======================================================
-  // Passport 초기화
-  //=======================================================
   app.use(passport.initialize());
   app.use(passport.session());
   passportConfig(passport);
 
-  // pug의 local에 현재 사용자 정보와 flash 메시지를 전달하자.
   app.use(function(req, res, next) {
-    res.locals.currentUser = req.user;  // passport는 req.user로 user정보 전달
+    res.locals.currentUser = req.user; 
     res.locals.flashMessages = req.flash();
     next();
   });
 
-  // Socket에서도 Passport로 로그인한 정보를 볼 수 있도록 함.
   io.use(passportSocketIo.authorize({
     cookieParser: cookieParser,       // the same middleware you registrer in express
     key:          sessionId,       // the name of the cookie where express/connect stores its session_id
@@ -96,20 +88,17 @@ module.exports = (app, io) => {
       accept(null, true);
     }, 
     fail:         (data, message, error, accept) => {
-      // 실패 혹은 로그인 안된 경우
+
       console.log('failed connection to socket.io:', message);
       accept(null, false);
     }
   }));
 
-  // connection 요청이 온 경우
   io.on('connection', socket => {
     console.log('socket connection!');
     if (socket.request.user.logged_in) {
-      // 로그인이 된 경우에만 join 요청을 받는다.
       socket.emit('welcome');
       socket.on('join', data => {
-        // 본인의 ID에 해당하는 채널에 가입시킨다.
         socket.join(socket.request.user._id.toString());
       });
     }
@@ -118,7 +107,7 @@ module.exports = (app, io) => {
   // Route
   app.use('/', index);
   app.use('/users', users);
-  app.use('/questions', questions(io)); // socket.io를 인자로 주기 위해 function으로 변경
+  app.use('/questions', questions(io));
   require('./routes/auth')(app, passport);
   app.use('/api', require('./routes/api'));
 

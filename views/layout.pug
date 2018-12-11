@@ -37,17 +37,14 @@ html
 
     script.
 
-      // WebSocket을 만들고 접속
       var socket = io();
 
       socket.on('welcome', function() {
-        // welcome 메시지를 받으면 join을 보낸다.
         console.log('received welcome');
         socket.emit('join');
       });
 
       socket.on('answered', function(data) {
-        // answered를 받으면 링크를 notifier로 출력한다.
         var title = $('<div></div>').text(data.question.title).html();
         $.notify({
           icon: 'fa fa-bell',
