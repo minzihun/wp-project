@@ -4,7 +4,7 @@ const Answer = require('../models/answer');
 const catchErrors = require('../lib/async-error');
 
 const multer = require('multer');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 module.exports = io => {
