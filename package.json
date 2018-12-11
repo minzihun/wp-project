@@ -9,9 +9,6 @@
     "node": "v6.9.5",
     "npm": "6.4.1"
   },
-  "browser": {
-    "fs": false
-},
   "dependencies": {
     "acorn": "^6.0.4",
     "aws-sdk": "^2.373.0",
