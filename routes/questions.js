@@ -27,7 +27,13 @@ module.exports = io => {
     if (term) {
       query = {$or: [
         {title: {'$regex': term, '$options': 'i'}},
-        {content: {'$regex': term, '$options': 'i'}}
+        {host: {'$regex': term, '$options': 'i'}},
+        {field: {'$regex': term, '$options': 'i'}},
+        {who: {'$regex': term, '$options': 'i'}},
+        {priod: {'$regex': term, '$options': 'i'}},
+        {content: {'$regex': term, '$options': 'i'}},
+        {manager: {'$regex': term, '$options': 'i'}},
+        {phone: {'$regex': term, '$options': 'i'}}
       ]};
     }
     const questions = await Question.paginate(query, {
@@ -60,7 +66,7 @@ module.exports = io => {
     const question = await Question.findById(req.params.id);
 
     if (!question) {
-      req.flash('danger', 'Not exist question');
+      req.flash('danger', '공모전이 존재하지 않음');
       return res.redirect('back');
     }
     question.title = req.body.title;
