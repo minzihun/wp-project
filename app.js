@@ -36,7 +36,6 @@ module.exports = (app, io) => {
   mongoose.connect(connStr, {useMongoClient: true });
   mongoose.connection.on('error', console.error);
 
-  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -53,6 +52,8 @@ module.exports = (app, io) => {
     debug: true,
     sourceMap: true
   }));
+
+  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
   const sessionStore = new session.MemoryStore();
   const sessionId = 'mjoverflow.sid';
