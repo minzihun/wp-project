@@ -96,7 +96,7 @@ module.exports = io => {
     const question = await Question.findById(req.params.id);
 
     if (!question) {
-      req.flash('danger', 'Not exist question');
+      req.flash('danger', '공모전이 존재하지 않음');
       return res.redirect('back');
     }
 
@@ -111,9 +111,9 @@ module.exports = io => {
 
     const url = `/questions/${question._id}#${answer._id}`;
     io.to(question.author.toString())
-      .emit('answered', {url: url, question: question});
-    console.log('SOCKET EMIT', question.author.toString(), 'answered', {url: url, question: question})
-    req.flash('success', 'Successfully answered');
+      .emit('댓글이 달림', {url: url, question: question});
+    console.log('SOCKET EMIT', question.author.toString(), '댓글이 달림', {url: url, question: question})
+    req.flash('success', '댓글이 성공적으로 달렸습니다.');
     res.redirect(`/questions/${req.params.id}`);
   }));
 

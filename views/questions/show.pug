@@ -14,13 +14,13 @@ block content
             span #[i.fa.fa-thumbs-up] Like
           if question.author && question.author.id == currentUser.id
             | 
-            a.btn.btn-outline-secondary(href=`/questions/${question.id}/edit`) Edit
+            a.btn.btn-outline-secondary(href=`/questions/${question.id}/edit`) 수정
             | 
-            a.btn.btn-outline-danger.need-confirm-btn(href=`/questions/${question.id}?_method=delete`) Delete
+            a.btn.btn-outline-danger.need-confirm-btn(href=`/questions/${question.id}?_method=delete`) 삭제
       
     if question.numAnswers > 0
       hr
-      h3 #{question.numAnswers} Answer(s)
+      h3 #{question.numAnswers} 댓글
       .answers.show
         each answer in answers
           include _answer
@@ -28,9 +28,9 @@ block content
     if currentUser
       form(action=`/questions/${question.id}/answers`, method='POST')
         .form-group
-          label(for='answer') Your Answer
+          label(for='answer') 너의 댓글
           textarea.form-control(name="content", rows="5")
-        button.btn.btn-primary(type="submit") Post Your Answer
+        button.btn.btn-primary(type="submit") 댓글 게시
 
 
   script(src='/javascripts/question_client.js')

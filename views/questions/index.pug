@@ -9,12 +9,12 @@ block content
       input.form-control.mr-sm-2(type='text', name='term', placeholder='Search', aria-label='Search', value=term)
 
     h1.main-title 
-      | Questions
+      | 공모전
       if questions.total > 0
         .small Total #{questions.total} question(s)
 
     if questions.total <= 0 
-      .alert.alert-info No questions available yet
+      .alert.alert-info 아직 공모전이 없습니다.
     else
       .questions
         each question in questions.docs
@@ -25,4 +25,4 @@ block content
       +paginate(questions, '/questions', query)
 
     hr
-    a.btn.btn-primary(href='/questions/new') Ask Question
+    a.btn.btn-primary(href='/questions/new') 공모전 추가
