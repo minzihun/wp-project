@@ -5,7 +5,13 @@ const Schema = mongoose.Schema;
 var schema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User' },
   title: {type: String, trim: true, required: true},
+  host: {type: String, trim: true, required: true},
+  field: {type: String, trim: true, required: true},
+  who: {type: String, trim: true, required: true},
+  priod: {type: String, trim: true, required: true},
   content: {type: String, trim: true, required: true},
+  manager: {type: String, trim: true, required: true},
+  phone: {type: String, trim: true, required: true},
   tags: [String],
   numLikes: {type: Number, default: 0},
   numAnswers: {type: Number, default: 0},
