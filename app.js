@@ -53,8 +53,6 @@ module.exports = (app, io) => {
     sourceMap: true
   }));
 
-  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
   const sessionStore = new session.MemoryStore();
   const sessionId = 'mjoverflow.sid';
   const sessionSecret =  'TODO: change this secret string for your own';
@@ -123,6 +121,8 @@ module.exports = (app, io) => {
   app.use('/questions', questions(io)); // socket.io를 인자로 주기 위해 function으로 변경
   require('./routes/auth')(app, passport);
   app.use('/api', require('./routes/api'));
+
+  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
