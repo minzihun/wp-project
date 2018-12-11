@@ -3,25 +3,25 @@
   input.form-control(type="text", name="title", placeholder="게시할 공모전은 무엇입니까?", value=question.title)
 .form-group
   label(for="host") 주최사
-  input.form-control(type="text", name="host", value=question.title)
+  input.form-control(name="host", value=question.host)
 .form-group
   label(for="field") 분야
-  input.form-control(type="text", name="field", value=question.title)
+  input.form-control(name="field", value=question.field)
 .form-group
   label(for="who") 응시대상
-  input.form-control(type="text", name="who", value=question.title)
+  input.form-control(name="who", value=question.who)
 .form-group
   label(for="priod") 접수기간
-  input.form-control(type="text", name="priod", value=question.title)
+  input.form-control(name="priod", value=question.priod)
 .form-group
   label(for="question") 모집요강
   textarea.form-control(name="content", rows="5")= question.content
 .form-group
   label(for="manager") 담당자
-  input.form-control(type="text", name="manager", value=question.title)
+  input.form-control(name="manager", value=question.manager)
 .form-group
   label(for="phone") 연락처
-  input.form-control(type="text", name="phone", value=question.title)
+  input.form-control(name="phone", value=question.phone)
 .form-group
   label(for="tags") 태그
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=question.tags ? question.tags.join(" ") : "")

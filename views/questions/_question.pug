@@ -1,4 +1,12 @@
-.content= question.content
+.host='주최사: '+question.host
+.field='분야: '+question.field
+.who='응시대상: '+question.who
+.priod='접수기간: '+question.priod
+.content='\n공모요강\n'+ question.content
+.manager='\n담당자: '+question.manager
+.phone='연락처: '+question.phone
+.etc='추가정보: ' +question.etc
+
 .tags.badges
   each tag in question.tags
     span.badge.badge-phill.badge-secondary= 태그

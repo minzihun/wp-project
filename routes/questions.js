@@ -33,7 +33,8 @@ module.exports = io => {
         {priod: {'$regex': term, '$options': 'i'}},
         {content: {'$regex': term, '$options': 'i'}},
         {manager: {'$regex': term, '$options': 'i'}},
-        {phone: {'$regex': term, '$options': 'i'}}
+        {phone: {'$regex': term, '$options': 'i'}},
+        {etc: {'$regex': term, '$options': 'i'}}
       ]};
     }
     const questions = await Question.paginate(query, {
@@ -96,6 +97,7 @@ module.exports = io => {
       content: req.body.content,
       manager: req.body.manager,
       phone: req.body.phone,
+      etc: req.body.etc,
       tags: req.body.tags.split(" ").map(e => e.trim()),
     });
     await question.save();
