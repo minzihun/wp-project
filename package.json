@@ -6,7 +6,8 @@
     "start": "nodemon ./bin/www"
   },
   "engines": {
-    "node": "v8.2.1"
+    "node": "v8.2.1",
+    "npm": "6.4.1"
   },
   "dependencies": {
     "acorn": "^6.0.4",
