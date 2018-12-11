@@ -26,39 +26,39 @@
   label(for="etc") 기타정보
   input.form-control(name="etc", value=question.phone)
 .form-group
-  label(for='img') 이미지
-  input.form-control(type="file")
+  label(for="img") 이미지
+  input#file.form-control(type="file")
   input#url.form-control(type="text", readonly="readonly", name="img", value="")
   img#preview.img-fluid(src="https://dummyimage.com/200x200/ccc/fff")
-.form-group
+  .form-group
   label(for="tags") 태그
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=question.tags ? question.tags.join(" ") : "")
 
 
-  script.
-    $(function() {
-      $("#preview").hide()
-      $('#file').change(function() {
-        var file = $("#file")[0].files[0];
-        if (file){
-          var url = "/s3?filename=" + encodeURIComponent(file.name)+
-                    "&type=" + encodeURIComponent(file.type);
-          console.log(url);
-          $.getJSON(url, function(resp){
-            console.log(resp.signedRequest);
-            $.ajax({
-              url: resp.signedRequest,
-              method: 'PUT',
-              data: file,
-              headers: {'x-amz-acl': 'public-read', 'Content-Type': file.type},
-              processDate: false,
-              contentType: file.type,
-              success: function(){
-                $("#preview").attr("src",resp.url).show();
-                $("#url").val(resp.url);
-              }
-            });
+script.
+  $(function() {
+    $("#preview").hide();
+    $("#file").change(function() {
+      var file = $("#file")[0].files[0];
+      if (file) {
+        var url = "/s3?filename=" + encodeURIComponent(file.name) + 
+                  "&type=" + encodeURIComponent(file.type);
+        console.log(url);
+        $.getJSON(url, function(resp) {
+          console.log(resp.signedRequest);
+          $.ajax({
+            url: resp.signedRequest,
+            method: 'PUT',
+            data: file,
+            headers: {'x-amz-acl': 'public-read', 'Content-Type': file.type},
+            processData: false, 
+            contentType: file.type,
+            success: function() {
+              $("#preview").attr("src", resp.url).show();
+              $("#url").val(resp.url);
+            }
           });
-        }
-      });
+        });
+      }
     });
+  });ㄴ
