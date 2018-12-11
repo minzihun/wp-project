@@ -6,7 +6,7 @@
       a.like(href='#', data-id=answer.id)
         i.fa.fa-thumbs-up
         | 
-        | Like
+        | 좋아요
 
   .card-body
     .content= answer.content
@@ -14,7 +14,7 @@
     .col-sm
     .col-sm.text-right
       .author
-        | answered on #{moment(answer.createdAt).format('YYYY-MM-DD')}
+        | 댓글 작성 #{moment(answer.createdAt).format('YYYY-MM-DD')}
         if answer.author
           | 
           | by #[a(href=`/users/${answer.author.id}`)= answer.author.name]
