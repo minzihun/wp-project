@@ -12,8 +12,6 @@ var mongoose = require('mongoose');
 var passportSocketIo = require('passport.socketio');
 var passport = require('passport');
 
-var fs = require('fs-extra');
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var questions = require('./routes/questions');
