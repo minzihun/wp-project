@@ -5,6 +5,8 @@ block content
     h1.main-title= question.title
 
     .question.show
+      if question.img
+          img.img-fluid(src= question.img)  
       include _question
 
       .buttons
