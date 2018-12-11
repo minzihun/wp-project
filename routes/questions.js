@@ -89,7 +89,13 @@ module.exports = io => {
     var question = new Question({
       title: req.body.title,
       author: user._id,
+      host: req.body.host,
+      field: req.body.field,
+      who: req.body.who,
+      priod: req.body.priod,
       content: req.body.content,
+      manager: req.body.manager,
+      phone: req.body.phone,
       tags: req.body.tags.split(" ").map(e => e.trim()),
     });
     await question.save();

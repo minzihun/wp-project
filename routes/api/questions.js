@@ -28,11 +28,17 @@ router.post('', catchErrors(async (req, res, next) => {
   var question = new Question({
     title: req.body.title,
     author: req.user._id,
+    host: req.body.host,
+    field: req.field.field,
+    who: req.field.who,
+    priod: req.field.priod,
     content: req.body.content,
+    manager: req.field.manager,
+    phone: req.field.phone,
     tags: req.body.tags.map(e => e.trim()),
   });
   await question.save();
-  res.json(question)
+  res.json(question);
 }));
 
 // Put
@@ -45,7 +51,13 @@ router.put('/:id', catchErrors(async (req, res, next) => {
     return next({status: 403, msg: 'Cannot update'});
   }
   question.title = req.body.title;
+  question.host =req.body.host;
+  question.field =req.body.field;
+  question.who =req.body.who;
+  question.priod =req.body.priod;
   question.content = req.body.content;
+  question.manager =req.body.manager;
+  question.phone =req.body.phone;
   question.tags = req.body.tags;
   await question.save();
   res.json(question);
