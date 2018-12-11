@@ -11,7 +11,7 @@ block content
         if currentUser
           button.btn.btn-primary.question-like-btn(data-id=question.id) 
             span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
-            span #[i.fa.fa-thumbs-up] Like
+            span #[i.fa.fa-thumbs-up] 좋아요
           if question.author && question.author.id == currentUser.id
             | 
             a.btn.btn-outline-secondary(href=`/questions/${question.id}/edit`) 수정

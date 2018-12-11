@@ -11,7 +11,7 @@ block content
     h1.main-title 
       | 공모전
       if questions.total > 0
-        .small Total #{questions.total} question(s)
+        .small 총 #{questions.total} 공모전
 
     if questions.total <= 0 
       .alert.alert-info 아직 공모전이 없습니다.
@@ -20,7 +20,6 @@ block content
         each question in questions.docs
           .question
             a.title(href=`/questions/${question.id}`)= question.title
-            include _question
 
       +paginate(questions, '/questions', query)
 

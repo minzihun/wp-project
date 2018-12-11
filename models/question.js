@@ -12,6 +12,7 @@ var schema = new Schema({
   content: {type: String, trim: true, required: true},
   manager: {type: String, trim: true, required: true},
   phone: {type: String, trim: true, required: true},
+  etc: {type: String, trim: true} ,
   tags: [String],
   numLikes: {type: Number, default: 0},
   numAnswers: {type: Number, default: 0},

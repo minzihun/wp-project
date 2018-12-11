@@ -35,6 +35,7 @@ router.post('', catchErrors(async (req, res, next) => {
     content: req.body.content,
     manager: req.field.manager,
     phone: req.field.phone,
+    etc: req.field.etc,
     tags: req.body.tags.map(e => e.trim()),
   });
   await question.save();
@@ -58,6 +59,7 @@ router.put('/:id', catchErrors(async (req, res, next) => {
   question.content = req.body.content;
   question.manager =req.body.manager;
   question.phone =req.body.phone;
+  question.etc=req.body.phone;
   question.tags = req.body.tags;
   await question.save();
   res.json(question);
