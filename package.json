@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "acorn": "^6.0.4",
-    "aws-sdk": "^2.373.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
